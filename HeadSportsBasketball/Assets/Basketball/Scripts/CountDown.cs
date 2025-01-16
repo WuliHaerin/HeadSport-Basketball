@@ -9,10 +9,17 @@ public class CountDown : MonoBehaviour
     public float time = 5;
     public TMP_Text timeText;
     // Start is called before the first frame update
-    void Start()
+
+    private void OnEnable()
     {
+        time = 5;
         timeText.text = time.ToString();
         StartCoroutine(Count());
+    }
+
+    void Start()
+    {
+
     }
 
     // Update is called once per frame
@@ -30,5 +37,10 @@ public class CountDown : MonoBehaviour
             timeText.text = time.ToString();
 
         }
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
     }
 }

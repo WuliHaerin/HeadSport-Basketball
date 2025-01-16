@@ -376,14 +376,14 @@ public class GameManager : MonoBehaviour
                         gameOverMenu.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().sprite = player1.myFace[1];
                         gameOverMenu.transform.GetChild(1).GetChild(0).GetComponent<SpriteRenderer>().sprite = player2.myFace[1];
                         gameOverMenu.transform.GetChild(2).GetComponent<TextMeshPro>().text = "平局";
-                    Invoke("SetGameUnActive", 1);
+                    Invoke("SetGameUnActive", 6);
 
                 }
             }
         }
     }
 
-    void SetGameUnActive()
+    public void SetGameUnActive()
     {
         if(!isContinue)
         {
@@ -421,7 +421,9 @@ public class GameManager : MonoBehaviour
 
     public void SetAdPanel(bool a)
     {
-        Time.timeScale = a==true? 0:1;
+        player2.gameObject.SetActive(!a);
+        ball.SetActive(!a);
+        inGameButton.SetActive(!a);
         adPanel.SetActive(a);
         return;
     }
@@ -435,9 +437,10 @@ public class GameManager : MonoBehaviour
             (bol) => {
                 if (bol)
                 {
-                    SetAdPanel(false);
+                   SetAdPanel(false);
                     gameMode = GameMode.PLAY;
-                    time += 15;
+                    time = 15;
+                    timeLabel.text = time.ToString();
                     isContinue = true;
 
                     AdManager.clickid = "";
