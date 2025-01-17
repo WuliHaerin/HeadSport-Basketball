@@ -433,11 +433,11 @@ public class GameManager : MonoBehaviour
 
     public void ClickBtn()
     {
+        SetAdPanel(false);
         AdManager.ShowVideoAd("i6rd2kqbgq4be767ij",
             (bol) => {
                 if (bol)
                 {
-                   SetAdPanel(false);
                     gameMode = GameMode.PLAY;
                     time = 15;
                     timeLabel.text = time.ToString();
